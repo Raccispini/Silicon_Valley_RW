@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cpdg5bmhaqyb"]
+
+[ext_resource type="PackedScene" uid="uid://6jk8x7rql3l6" path="res://assets/models/AssetPackIndustrial/building_10.blend" id="1_w4bc2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_td8dt"]
+size = Vector3(37.6396, 10.7714, 21.5189)
+
+[node name="Building10" type="StaticBody3D"]
+
+[node name="building_10" parent="." instance=ExtResource("1_w4bc2")]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0371, 4.88568, 1.0051)
+shape = SubResource("BoxShape3D_td8dt")

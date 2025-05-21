@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=3 uid="uid://8376m3j5hjx8"]
+
+[ext_resource type="Shader" uid="uid://clgdhwo0v4jhi" path="res://assets/godot-psx-master/Shaders/psx_lit.gdshader" id="1_v6xad"]
+[ext_resource type="Texture2D" uid="uid://cgmbv5qa0p387" path="res://assets/models/textures/dumpster_standardSurface1_BaseColor.png" id="2_0dopf"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_v6xad")
+shader_parameter/albedo = ExtResource("2_0dopf")
+shader_parameter/jitter = 0.42
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = false
+shader_parameter/affine_texture_intensity = -2.0
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/emission_color = Color(1, 1, 1, 1)
+shader_parameter/texture_size = Vector2(1, 1)

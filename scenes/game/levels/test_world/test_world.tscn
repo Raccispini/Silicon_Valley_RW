@@ -5,8 +5,11 @@
 [ext_resource type="FontFile" uid="uid://bj022vx1alxl" path="res://assets/texts/fonts/SpaceMono-Regular.ttf" id="1_nuymw"]
 [ext_resource type="Texture2D" uid="uid://c2piu777bj6oy" path="res://assets/models/textures/prototype_materials/orange.png" id="2_wbbo5"]
 [ext_resource type="PackedScene" uid="uid://bxur5vqmpqwps" path="res://scenes/game/levels/test_world/death_box/death_box.tscn" id="3_dlfxh"]
+[ext_resource type="Shader" uid="uid://bwuwg8ij4h87" path="res://assets/godot-psx-master/Shaders/psx_unlit.gdshader" id="3_ovkio"]
 [ext_resource type="Texture2D" uid="uid://beemuc5ys21gi" path="res://assets/models/textures/prototype_materials/green.png" id="3_vp0cd"]
 [ext_resource type="Texture2D" uid="uid://cvqp4ari3xxut" path="res://assets/models/textures/prototype_materials/purple.png" id="4_dlfxh"]
+[ext_resource type="PackedScene" uid="uid://s1ane1jjv6lc" path="res://assets/models/cassonetto.blend" id="7_lwchj"]
+[ext_resource type="PackedScene" uid="uid://xmmdx0i06cco" path="res://assets/models/handbrake0.blend" id="8_elnbr"]
 
 [sub_resource type="Theme" id="Theme_dlfxh"]
 Label/constants/outline_size = 8
@@ -35,24 +38,19 @@ sky = SubResource("Sky_2iust")
 tonemap_mode = 1
 ssao_enabled = true
 
-[sub_resource type="Gradient" id="Gradient_ur0vy"]
-colors = PackedColorArray(0, 0.476245, 0.0193456, 1, 0.360494, 0.612721, 0.119744, 1)
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_jd3pw"]
-frequency = 0.0027
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_7akuf"]
-width = 1024
-height = 1024
-in_3d_space = true
-seamless = true
-color_ramp = SubResource("Gradient_ur0vy")
-noise = SubResource("FastNoiseLite_jd3pw")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_67ysu"]
-albedo_texture = SubResource("NoiseTexture2D_7akuf")
-uv1_scale = Vector3(0.1, 0.1, 0.1)
-uv1_triplanar = true
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_c8b2p"]
+render_priority = 0
+shader = ExtResource("3_ovkio")
+shader_parameter/albedo = ExtResource("3_vp0cd")
+shader_parameter/jitter = 0.423
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = true
+shader_parameter/affine_texture_mapping = false
+shader_parameter/affine_texture_intensity = -2.0
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/emission_color = Color(1, 1, 1, 1)
+shader_parameter/texture_size = Vector2(0.1, 0.1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lwchj"]
 albedo_texture = ExtResource("1_ey3qx")
@@ -211,7 +209,7 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.5, 10)
 use_collision = true
 size = Vector3(30, 1, 30)
-material = SubResource("StandardMaterial3D_67ysu")
+material = SubResource("ShaderMaterial_c8b2p")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="terrain"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, -10)
@@ -707,6 +705,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, -0.5, -7.5)
 use_collision = true
 size = Vector3(4, 1, 4)
 material = SubResource("StandardMaterial3D_7j4uu")
+
+[node name="cassonetto" parent="terrain" instance=ExtResource("7_lwchj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.1573, 0.89291, 11.859)
+
+[node name="handbrake0" parent="terrain" instance=ExtResource("8_elnbr")]
+transform = Transform3D(20, 0, 0, 0, 20, 0, 0, 0, 20, 16.6327, 1.64337, 11.4986)
 
 [node name="DeathBox" parent="." instance=ExtResource("3_dlfxh")]
 transform = Transform3D(4984.37, 0, 0, 0, 10, 0, 0, 0, 2991.32, 6.69445, -21.1579, 8.85582)

@@ -1,0 +1,144 @@
+[gd_scene load_steps=15 format=3 uid="uid://dvxu6d725hbuh"]
+
+[ext_resource type="Texture2D" uid="uid://bahdl4gu5n0m3" path="res://assets/models/AssetPackIndustrial/Asphalt_1-4.png" id="1_47a05"]
+[ext_resource type="Texture2D" uid="uid://bkwj15vls23xd" path="res://assets/models/AssetPackIndustrial/Asphalt_1-4_n.png" id="2_0u1jf"]
+[ext_resource type="Shader" uid="uid://clgdhwo0v4jhi" path="res://assets/godot-psx-master/Shaders/psx_lit.gdshader" id="3_0u1jf"]
+[ext_resource type="PackedScene" uid="uid://b2wef8j36ocw2" path="res://assets/models/AssetPackIndustrial/scenes/road.tscn" id="3_dg2xg"]
+[ext_resource type="PackedScene" uid="uid://cpdg5bmhaqyb" path="res://assets/models/AssetPackIndustrial/scenes/building_10.tscn" id="4_kthcs"]
+[ext_resource type="PackedScene" uid="uid://od7loo2bhgd8" path="res://assets/models/AssetPackIndustrial/scenes/building_1.tscn" id="5_xktgq"]
+[ext_resource type="PackedScene" uid="uid://d0l1npji137hr" path="res://assets/models/Lampione.tscn" id="7_dg2xg"]
+[ext_resource type="PackedScene" uid="uid://s1ane1jjv6lc" path="res://assets/models/cassonetto.blend" id="8_kthcs"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4k8xp"]
+sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_7lcfi"]
+sky_material = SubResource("ProceduralSkyMaterial_4k8xp")
+
+[sub_resource type="Environment" id="Environment_o685u"]
+background_mode = 2
+sky = SubResource("Sky_7lcfi")
+tonemap_mode = 2
+glow_enabled = true
+glow_levels/1 = 0.13
+glow_levels/2 = 0.25
+glow_levels/3 = 0.5
+glow_levels/4 = 1.0
+glow_levels/5 = 2.0
+glow_levels/6 = 4.0
+glow_levels/7 = 8.0
+fog_mode = 1
+fog_depth_curve = 2.07053
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w2euq"]
+albedo_texture = ExtResource("1_47a05")
+normal_enabled = true
+normal_texture = ExtResource("2_0u1jf")
+
+[sub_resource type="BoxMesh" id="BoxMesh_ytc2s"]
+material = SubResource("StandardMaterial3D_w2euq")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_dg2xg"]
+render_priority = 0
+shader = ExtResource("3_0u1jf")
+shader_parameter/albedo = ExtResource("1_47a05")
+shader_parameter/jitter = 0.05
+shader_parameter/jitter_z_coordinate = true
+shader_parameter/jitter_depth_independent = false
+shader_parameter/affine_texture_mapping = false
+shader_parameter/affine_texture_intensity = -2.0
+shader_parameter/alpha_scissor = 1.0
+shader_parameter/albedo_color = Color(1, 1, 1, 1)
+shader_parameter/emission_color = Color(1, 1, 1, 1)
+shader_parameter/texture_size = Vector2(1, 1)
+
+[node name="AmbienceLevel" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_o685u")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="."]
+transform = Transform3D(100, 0, 0, 0, 1, 0, 0, 0, 100, 0, 0, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_ytc2s")
+material = SubResource("ShaderMaterial_dg2xg")
+
+[node name="Road" parent="." instance=ExtResource("3_dg2xg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.874483, 0)
+
+[node name="Road4" parent="." instance=ExtResource("3_dg2xg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.874483, -19.9795)
+
+[node name="Road5" parent="." instance=ExtResource("3_dg2xg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.874483, -39.6596)
+
+[node name="Road2" parent="." instance=ExtResource("3_dg2xg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.874483, 19.9348)
+
+[node name="Road3" parent="." instance=ExtResource("3_dg2xg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00716734, 0.874969, 39.8996)
+
+[node name="Building10" parent="." instance=ExtResource("4_kthcs")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -23.3186, 0.827407, -38.1268)
+
+[node name="Building14" parent="." instance=ExtResource("4_kthcs")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0.0584736, 0.827407, -66.7052)
+
+[node name="Building1" parent="." instance=ExtResource("5_xktgq")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -11.6132, 0.520863, -17.519)
+
+[node name="Building13" parent="." instance=ExtResource("4_kthcs")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -23.3186, 0.827407, 5.61673)
+
+[node name="Building4" parent="." instance=ExtResource("5_xktgq")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, -11.6132, 0.520863, 26.2245)
+
+[node name="Building11" parent="." instance=ExtResource("4_kthcs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5885, 0.702633, -17.519)
+
+[node name="Building2" parent="." instance=ExtResource("5_xktgq")]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 12.883, 0.522696, -38.1268)
+
+[node name="Building12" parent="." instance=ExtResource("4_kthcs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.5885, 0.702633, 25.2658)
+
+[node name="Building3" parent="." instance=ExtResource("5_xktgq")]
+transform = Transform3D(1, 0, -1.74846e-07, 0, 1, 0, 1.74846e-07, 0, 1, 12.883, 0.522696, 4.65801)
+
+[node name="Lampione" parent="." instance=ExtResource("7_dg2xg")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4.41171, 0.815899, -4.88711)
+
+[node name="Lampione8" parent="." instance=ExtResource("7_dg2xg")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4.41171, 0.815899, -24.8645)
+
+[node name="Lampione9" parent="." instance=ExtResource("7_dg2xg")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4.41171, 0.815899, -44.9905)
+
+[node name="Lampione2" parent="." instance=ExtResource("7_dg2xg")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4.41171, 0.815899, 12.8659)
+
+[node name="Lampione3" parent="." instance=ExtResource("7_dg2xg")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4.41171, 0.815899, 33.3066)
+
+[node name="Lampione4" parent="." instance=ExtResource("7_dg2xg")]
+transform = Transform3D(-1.5, 0, -2.26494e-07, 0, 1.5, 0, 2.26494e-07, 0, -1.5, 3.78734, 0.815899, 23.4618)
+
+[node name="Lampione5" parent="." instance=ExtResource("7_dg2xg")]
+transform = Transform3D(-1.5, 0, -2.26494e-07, 0, 1.5, 0, 2.26494e-07, 0, -1.5, 3.78734, 0.815899, 4.11671)
+
+[node name="Lampione6" parent="." instance=ExtResource("7_dg2xg")]
+transform = Transform3D(-1.5, 0, -2.26494e-07, 0, 1.5, 0, 2.26494e-07, 0, -1.5, 3.78734, 0.815899, -14.9387)
+
+[node name="Lampione7" parent="." instance=ExtResource("7_dg2xg")]
+transform = Transform3D(-1.5, 0, -2.26494e-07, 0, 1.5, 0, 2.26494e-07, 0, -1.5, 3.78734, 0.815899, -34.2838)
+
+[node name="cassonetto" parent="." instance=ExtResource("8_kthcs")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4.54528, 2.24783, -21.9347)
+
+[node name="cassonetto2" parent="." instance=ExtResource("8_kthcs")]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, -4.54528, 2.24783, 18.4058)
