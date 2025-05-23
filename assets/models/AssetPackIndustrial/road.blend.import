@@ -38,6 +38,12 @@ _subresources={
 "use_external/enabled": true,
 "use_external/path": "uid://cm3v5ynqge5e8"
 }
+},
+"nodes": {
+"PATH:Road_long": {
+"generate/physics": true,
+"physics/shape_type": 2
+}
 }
 }
 blender/nodes/visible=0

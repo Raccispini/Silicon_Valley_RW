@@ -146,7 +146,7 @@ func _ready():
 	HEAD.rotation.y = rotation.y
 	rotation.y = 0
 	
-	set_floor_max_angle(PI / 6)
+	#set_floor_max_angle(PI / 6)
 	initialize_animations()
 
 	
