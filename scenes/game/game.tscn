@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://daucglrwc2ahf"]
+[gd_scene load_steps=13 format=3 uid="uid://daucglrwc2ahf"]
 
 [ext_resource type="PackedScene" uid="uid://eomrg3xc2jq4" path="res://scenes/game/hud/debug/debug_menu.tscn" id="1_0sr1o"]
 [ext_resource type="PackedScene" uid="uid://dvxu6d725hbuh" path="res://scenes/game/levels/AmbienceTest/ambience_level.tscn" id="1_vaxfo"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cjgyp6y6m3ui6" path="res://scenes/game/hud/reticle/reticle.tscn" id="4_kelw5"]
 [ext_resource type="FontFile" uid="uid://bj022vx1alxl" path="res://assets/texts/fonts/SpaceMono-Regular.ttf" id="8_87uf6"]
 [ext_resource type="Script" uid="uid://d4khii2xiicy7" path="res://scenes/game/parkour_timer_labels.gd" id="10_4j704"]
+[ext_resource type="PackedScene" uid="uid://kxytmlo7cwpx" path="res://assets/models/armadietto.blend" id="10_kp23o"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_2a8rs"]
 line_spacing = 0.0
@@ -154,5 +155,8 @@ theme_override_fonts/font = ExtResource("8_87uf6")
 text = "--:--.---"
 label_settings = SubResource("LabelSettings_2a8rs")
 horizontal_alignment = 2
+
+[node name="armadietto2" parent="." instance=ExtResource("10_kp23o")]
+transform = Transform3D(100, 0, 0, 0, 100, 0, 0, 0, 100, 0.604525, 0.81258, -4.71372)
 
 [connection signal="riprendi" from="HUD/PauseMenu" to="HUD" method="_on_pause_menu_riprendi"]
